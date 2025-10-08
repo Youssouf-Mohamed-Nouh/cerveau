@@ -1,8 +1,9 @@
 import os
-import requests
-import tensorflow as tf
 import streamlit as st
 import numpy as np
+from PIL import Image
+import tensorflow as tf
+import requests
 
 # --- Configuration page ---
 st.set_page_config(
@@ -12,10 +13,11 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# --- Charger le modèle ---
+# --- Chemin et Google Drive ---
 MODEL_PATH = "projetResnet50.keras"
-DRIVE_ID = "1n1ztaaFx4pFUXOVLwa8Q9b0fLBygt_9F"  # juste l'ID
+DRIVE_ID = "1n1ztaaFx4pFUXOVLwa8Q9b0fLBygt_9F"  # Remplace par ton ID Google Drive
 
+# --- Charger le modèle ---
 @st.cache_resource
 def charger_modele():
     if not os.path.exists(MODEL_PATH):
@@ -29,7 +31,9 @@ def charger_modele():
         st.success("✅ Modèle téléchargé !")
     return tf.keras.models.load_model(MODEL_PATH)
 
-# Classes du modèle
+model = charger_modele()
+
+# --- Classes du modèle ---
 CLASS_NAMES = ["glioma", "meningioma", "no_tumor", "pituitary"]
 
 # --- CSS Design ---
