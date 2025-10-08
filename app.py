@@ -2,6 +2,7 @@ import numpy as np
 import gdown
 import tensorflow as tf
 import streamlit as st
+
 # --- Configuration page ---
 st.set_page_config(
     page_title="🧠 Détection des Tumeurs Cérébrales - ResNet50",
