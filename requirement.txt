@@ -1,9 +1,8 @@
-streamlit==1.39.0
-tensorflow==2.20.0
-numpy==1.26.4
-Pillow==10.3.0
-scikit-learn==1.5.2
-matplotlib==3.9.2
-seaborn==0.13.2
-gdown==5.2.0
-
+requests
+tensorflow
+streamlit
+numpy
+Pillow
+scikit-learn
+matplotlib
+seaborn
