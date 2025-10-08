@@ -13,7 +13,7 @@ st.set_page_config(
 
 # --- Charger le modèle ---
 MODEL_PATH = "projetResnet50.keras"
-DRIVE_ID = "https://drive.google.com/file/d/1n1ztaaFx4pFUXOVLwa8Q9b0fLBygt_9F/view?usp=drive_link"  # remplace par ton ID Google Drive
+DRIVE_ID = "1n1ztaaFx4pFUXOVLwa8Q9b0fLBygt_9F"
 
 @st.cache_resource
 def charger_modele():
