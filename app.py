@@ -1,8 +1,7 @@
-import streamlit as st
 import numpy as np
-from PIL import Image
+import gdown
 import tensorflow as tf
-
+import streamlit as st
 # --- Configuration page ---
 st.set_page_config(
     page_title="🧠 Détection des Tumeurs Cérébrales - ResNet50",
@@ -13,7 +12,7 @@ st.set_page_config(
 
 # --- Charger le modèle ---
 MODEL_PATH = "projetResnet50.keras"
-DRIVE_ID = "1n1ztaaFx4pFUXOVLwa8Q9b0fLBygt_9F"
+DRIVE_ID = "1n1ztaaFx4pFUXOVLwa8Q9b0fLBygt_9F"  # juste l'ID
 
 @st.cache_resource
 def charger_modele():
@@ -25,7 +24,6 @@ def charger_modele():
     return tf.keras.models.load_model(MODEL_PATH)
 
 model = charger_modele()
-
 # Classes du modèle
 CLASS_NAMES = ["glioma", "meningioma", "no_tumor", "pituitary"]
 
