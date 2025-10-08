@@ -12,9 +12,17 @@ st.set_page_config(
 )
 
 # --- Charger le modèle ---
+MODEL_PATH = "projetResnet50.keras"
+DRIVE_ID = "https://drive.google.com/file/d/1n1ztaaFx4pFUXOVLwa8Q9b0fLBygt_9F/view?usp=drive_link"  # remplace par ton ID Google Drive
+
 @st.cache_resource
 def charger_modele():
-    return tf.keras.models.load_model("projetResnet50.keras")
+    if not os.path.exists(MODEL_PATH):
+        with st.spinner("📥 Téléchargement du modèle depuis Google Drive..."):
+            url = f"https://drive.google.com/uc?id={DRIVE_ID}"
+            gdown.download(url, MODEL_PATH, quiet=False)
+        st.success("✅ Modèle téléchargé !")
+    return tf.keras.models.load_model(MODEL_PATH)
 
 model = charger_modele()
 
