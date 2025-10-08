@@ -1,5 +1,5 @@
 import os
-import gdown
+import requests
 import tensorflow as tf
 import streamlit as st
 import numpy as np
@@ -21,11 +21,14 @@ def charger_modele():
     if not os.path.exists(MODEL_PATH):
         with st.spinner("📥 Téléchargement du modèle depuis Google Drive..."):
             url = f"https://drive.google.com/uc?id={DRIVE_ID}"
-            gdown.download(url, MODEL_PATH, quiet=False)
+            r = requests.get(url, stream=True)
+            with open(MODEL_PATH, "wb") as f:
+                for chunk in r.iter_content(chunk_size=8192):
+                    if chunk:
+                        f.write(chunk)
         st.success("✅ Modèle téléchargé !")
     return tf.keras.models.load_model(MODEL_PATH)
 
-model = charger_modele()
 # Classes du modèle
 CLASS_NAMES = ["glioma", "meningioma", "no_tumor", "pituitary"]
 
